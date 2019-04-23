@@ -72,6 +72,21 @@ public class EchoServer extends AbstractServer
       ("Server has stopped listening for connections.");
   }
   
+  protected void clientConnected(ConnectionToClient client) {
+	 sendToAllClients("The Client " + client +" is connected");
+		 
+  }
+  
+  synchronized protected void clientDisconnected(
+		    ConnectionToClient client) {
+	  sendToAllClients("The Client " + client.toString() + "is Disconnected");
+  }
+  
+  synchronized protected void clientException(
+		    ConnectionToClient client, Throwable exception) {
+	  sendToAllClients("The Client from " + client +" is Disconnected because of exception");
+  }
+  
   //Class methods ***************************************************
   
   /**
