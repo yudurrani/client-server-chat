@@ -37,31 +37,31 @@ public class ChatClient extends AbstractClient {
 	}
 
 	/**
-   * This method handles all data coming from the UI            
-   *
-   * @param message The message from the UI.    
-   */
-  public void handleMessageFromClientUI(String message)
-  {
-    try
-    {
-    	if( message.charAt(0) == '#') {
-    		if ( message.equals("#quit")) {
-    			quit();
-    			 
-    			
-    		}
-    		
-    	}
-      sendToServer(message);
-    }
-    catch(IOException e )
-    {
-      clientUI.display
-        ("Could not send message to server.  Terminating client.");
-      quit();
-    }
-  }
+	 * This method handles all data coming from the UI
+	 *
+	 * @param message The message from the UI.
+	 */
+	public void handleMessageFromClientUI(String message) {
+		try {
+			if (message.charAt(0) == '#') {
+				if (message.equals("#quit")) {
+					quit();
+				} 
+				else if (message.equals("#logoff")) {
+					closeConnection();
+				} 
+				else if (message.startsWith("#sethost")) {
+					
+				}
+				
+			}
+				
+			sendToServer(message);
+		} catch (IOException e) {
+			clientUI.display("Could not send message to server.  Terminating client.");
+			quit();
+		}
+	}
 
 	/**
 	 * This method terminates the client.
