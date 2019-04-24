@@ -51,6 +51,14 @@ public class ChatClient extends AbstractClient {
 					closeConnection();
 				} 
 				else if (message.startsWith("#sethost")) {
+					if ( isConnected()) {
+						System.out.println("You are now connected, log off to set host.");
+						
+					}
+					else {
+						int prefixLength = "#sethost ".length();
+						
+					}
 					
 				}
 				
