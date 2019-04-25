@@ -54,8 +54,7 @@ public class ClientConsole implements ChatIF
       {
         message = fromConsole.readLine();
         client.handleMessageFromClientUI(message);
-        
-        
+                
         	
         }
       

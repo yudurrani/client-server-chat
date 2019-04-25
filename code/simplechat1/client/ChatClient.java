@@ -67,14 +67,16 @@ public class ChatClient extends AbstractClient {
 						int prefixLength = "#setport ".length();
 						String newPort = message.substring(prefixLength);
 						setPort(Integer.parseInt(newPort));
+						
 					}
 					
 				} else if (message.equals("#login")) {
 					if (isConnected()) {
 						System.out.println("You are already connected.");
-					} else
+					} else {
+						
 						openConnection();
-
+					}
 				} else if (message.equals("#gethost")) {
 					System.out.println(getHost());
 				
