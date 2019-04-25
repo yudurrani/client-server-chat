@@ -46,26 +46,47 @@ public class ChatClient extends AbstractClient {
 			if (message.charAt(0) == '#') {
 				if (message.equals("#quit")) {
 					quit();
-				} 
-				else if (message.equals("#logoff")) {
+				} else if (message.equals("#logoff")) {
 					closeConnection();
-				} 
-				else if (message.startsWith("#sethost")) {
-					if ( isConnected()) {
+				} else if (message.startsWith("#sethost")) {
+					if (isConnected()) {
 						System.out.println("You are now connected, log off to set host.");
-						
-					}
-					else {
+
+					} else {
 						int prefixLength = "#sethost ".length();
-						
+						String newHost = message.substring(prefixLength);
+						setHost(newHost);
+
+					}
+				} else if (message.startsWith("#setport")) {
+					if (isConnected()) {
+						System.out.println("You are now connected, log off to set host.");
+
+					} else {
+						int prefixLength = "#setport ".length();
+						String newPort = message.substring(prefixLength);
+						setPort(Integer.parseInt(newPort));
 					}
 					
+				} else if (message.equals("#login")) {
+					if (isConnected()) {
+						System.out.println("You are already connected.");
+					} else
+						openConnection();
+
+				} else if (message.equals("#gethost")) {
+					System.out.println(getHost());
+				
+
+				} else if (message.equals("#getport")) {
+					System.out.println(getPort());
 				}
-				
 			}
-				
+
 			sendToServer(message);
-		} catch (IOException e) {
+		} catch (
+
+		IOException e) {
 			clientUI.display("Could not send message to server.  Terminating client.");
 			quit();
 		}
