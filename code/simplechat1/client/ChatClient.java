@@ -48,6 +48,7 @@ public class ChatClient extends AbstractClient {
 					quit();
 				} else if (message.equals("#logoff")) {
 					closeConnection();
+					
 				} else if (message.startsWith("#sethost")) {
 					if (isConnected()) {
 						System.out.println("You are now connected, log off to set host.");
@@ -81,9 +82,10 @@ public class ChatClient extends AbstractClient {
 				} else if (message.equals("#getport")) {
 					System.out.println(getPort());
 				}
-			}
+			} else {
 
-			sendToServer(message);
+				sendToServer(message);
+			}
 		} catch (
 
 		IOException e) {
@@ -104,9 +106,7 @@ public class ChatClient extends AbstractClient {
 	}
 
 	protected void connectionClosed() {
-		clientUI.display("The server has shutdown");
-		System.exit(0);
-
+		clientUI.display("The server connection is closed");
 	}
 
 	protected void connectionException(Exception exception) {
